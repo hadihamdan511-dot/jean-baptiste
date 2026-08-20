@@ -110,7 +110,6 @@ img { max-width: 100%; display: block; }
 .logo:hover { color: var(--gold); }
 .logo span { color: var(--gold); }
 
-/* Premium Hamburger Icon - Hidden on desktop */
 .hamburger-icon {
   width: 28px;
   height: 22px;
@@ -170,7 +169,6 @@ img { max-width: 100%; display: block; }
   transform: scale(1.1);
 }
 
-/* Premium Search SVG Icon */
 .search-icon {
   width: 20px;
   height: 20px;
@@ -187,7 +185,6 @@ img { max-width: 100%; display: block; }
   stroke: var(--gold);
 }
 
-/* Premium Cart SVG Icon */
 .cart-icon {
   width: 22px;
   height: 22px;
@@ -1650,7 +1647,7 @@ function productCard(p) {
   const genderEmoji = p.section === 'men' ? '👨' : p.section === 'women' ? '👩' : '👤';
   const genderLabel = p.section === 'men' ? 'Men' : p.section === 'women' ? 'Women' : 'Unisex';
   return `
-    <div class="product-card">
+    <div class="product-card" data-product-id="${p.id}">
       <div class="product-img-wrap">
         <img src="${safeSrc(p.image)}" alt="${p.name}">
         <img class="hover-img" src="images/site/pic.jpeg" alt="">
@@ -1673,7 +1670,7 @@ function productCard(p) {
 function renderBestSellers() {
   const grid = document.getElementById('bestSellersGrid');
   if (!grid) return;
-  const items = PRODUCTS.filter(p => p.bestseller).slice(0, 12);
+  const items = PRODUCTS.filter(p => p.bestseller && p.section !== 'home').slice(0, 12);
   grid.innerHTML = items.map(productCard).join('');
 }
 
@@ -1715,7 +1712,9 @@ function scoreMatch(query, text) {
 function runSearch(query) {
   const resultsEl = document.getElementById('searchResults');
   if (!query.trim()) { resultsEl.innerHTML = ''; return; }
-  const scored = PRODUCTS.map(p => ({ p, s: scoreMatch(query, p.name) }))
+  const scored = PRODUCTS
+    .filter(p => p.section !== 'home') // HIDE HOME COLLECTION FROM SEARCH
+    .map(p => ({ p, s: scoreMatch(query, p.name) }))
     .filter(x => x.s > 0)
     .sort((a, b) => b.s - a.s)
     .slice(0, 10);

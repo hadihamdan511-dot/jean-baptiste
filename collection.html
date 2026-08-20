@@ -990,7 +990,6 @@ img { max-width: 100%; display: block; }
   <a href="collection.html?section=unisex" class="filter-btn">Unisex</a>
   <a href="collection.html?section=vip" class="filter-btn">VIP</a>
   <a href="collection.html?section=bestsellers" class="filter-btn">Best Sellers</a>
-  <a href="collection.html?section=home" class="filter-btn">🏠 Home Collection</a>
 </div>
 
 <!-- ===== PRODUCT GRID ===== -->
@@ -1225,7 +1224,9 @@ function scoreMatch(query, text) {
 function runSearch(query) {
   const resultsEl = document.getElementById('searchResults');
   if (!query.trim()) { resultsEl.innerHTML = ''; return; }
-  const scored = PRODUCTS.map(p => ({ p, s: scoreMatch(query, p.name) }))
+  const scored = PRODUCTS
+    .filter(p => p.section !== 'home') // HIDE HOME COLLECTION FROM SEARCH
+    .map(p => ({ p, s: scoreMatch(query, p.name) }))
     .filter(x => x.s > 0)
     .sort((a, b) => b.s - a.s)
     .slice(0, 10);
@@ -1254,8 +1255,7 @@ function renderCollection() {
     women: 'Women',
     unisex: 'Unisex',
     vip: 'VIP',
-    bestsellers: 'Best Sellers',
-    home: 'Home Collection'
+    bestsellers: 'Best Sellers'
   };
   document.getElementById('pageTitle').textContent = titles[section] || 'Collection';
 
@@ -1271,7 +1271,7 @@ function renderCollection() {
   } else if (section === 'vip') {
     items = PRODUCTS.filter(p => p.vip);
   } else if (section === 'bestsellers') {
-    items = PRODUCTS.filter(p => p.bestseller);
+    items = PRODUCTS.filter(p => p.bestseller && p.section !== 'home');
   } else {
     items = PRODUCTS.filter(p => p.section === section);
   }
