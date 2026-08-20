@@ -4755,7 +4755,7 @@ const PRODUCTS = [
   {
     "id": 433,
     "name": "Imperial VIP",
-    "image": "images/vip/Imperial VIP.jpeg",
+    "image": "images/vip/Imperial.jpeg",
     "section": "unisex",
     "bestseller": false,
     "vip": true,
