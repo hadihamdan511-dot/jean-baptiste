@@ -4854,7 +4854,7 @@ const PRODUCTS = [
   {
     "id": 442,
     "name": "Marfa Memo Paris",
-    "image": "images/vip/Marfa Memo Paris ,unisex.jpeg",
+    "image": "images/vip/Marfa.jpeg",
     "section": "unisex",
     "bestseller": false,
     "vip": true,
