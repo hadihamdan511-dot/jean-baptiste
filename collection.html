@@ -1167,7 +1167,7 @@ function productCard(p) {
   const genderEmoji = p.section === 'men' ? '👨' : p.section === 'women' ? '👩' : '👤';
   const genderLabel = p.section === 'men' ? 'Men' : p.section === 'women' ? 'Women' : 'Unisex';
   return `
-    <div class="product-card">
+    <div class="product-card" data-product-id="${p.id}">
       <div class="product-img-wrap">
         <img src="${safeSrc(p.image)}" alt="${p.name}">
         <img class="hover-img" src="images/site/pic.jpeg" alt="">
@@ -1286,6 +1286,31 @@ function renderCollection() {
   }
 }
 
+// ===== HIGHLIGHT PRODUCT FROM SEARCH =====
+function highlightProduct() {
+  const params = new URLSearchParams(window.location.search);
+  const highlightId = params.get('highlight');
+  
+  if (highlightId) {
+    setTimeout(() => {
+      const cards = document.querySelectorAll('.product-card');
+      for (const card of cards) {
+        const cardId = card.getAttribute('data-product-id');
+        if (cardId === highlightId) {
+          card.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          card.style.borderColor = 'var(--gold)';
+          card.style.boxShadow = '0 0 40px rgba(193, 154, 75, 0.6)';
+          card.style.transition = 'all 0.3s';
+          setTimeout(() => {
+            card.style.boxShadow = '';
+          }, 3000);
+          break;
+        }
+      }
+    }, 600);
+  }
+}
+
 // ===== SCROLL ANIMATIONS =====
 function handleScrollAnimations() {
   const elements = document.querySelectorAll('.animate-on-scroll');
@@ -1309,6 +1334,7 @@ document.addEventListener('DOMContentLoaded', function() {
   renderCollection();
   renderCart();
   handleScrollAnimations();
+  highlightProduct();
 });
 
 window.addEventListener('scroll', handleScrollAnimations);
