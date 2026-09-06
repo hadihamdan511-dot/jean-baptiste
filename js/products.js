@@ -476,7 +476,7 @@ const PRODUCTS = [
   {
     "id": 44,
     "name": "Cool Water Davidoff",
-    "image": "images/products/046_Cool Water Davidoff.png.jpeg",
+    "image": "images/products/046_Cool Water Davidoff.jpeg",
     "section": "men",
     "bestseller": true,
     "vip": false,
