@@ -2159,7 +2159,7 @@ const PRODUCTS = [
   {
     "id": 197,
     "name": "Cool Water Woman Davidoff",
-    "image": "images/products/184_Cool_Water_Woman_Davidoff.png",
+    "image": "images/products/184_Cool_Water_Woman_Davidoff.jpeg",
     "section": "women",
     "bestseller": false,
     "vip": false,
