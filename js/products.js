@@ -520,7 +520,7 @@ const PRODUCTS = [
   {
     "id": 48,
     "name": "Million Elixir Rabanne 1",
-    "image": "images/products/050_Million Elixir Rabanne 1.png",
+    "image": "images/products/millionelixir.jpeg",
     "section": "men",
     "bestseller": false,
     "vip": false,
