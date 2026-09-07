@@ -520,7 +520,7 @@ const PRODUCTS = [
   {
     "id": 48,
     "name": "1 Million Elixir Rabanne",
-    "image": "images/products/millionelixir.jpeg",
+    "image": "images/products/050_Million Elixir Rabanne 1.jpeg",
     "section": "men",
     "bestseller": false,
     "vip": false,
@@ -1950,8 +1950,8 @@ const PRODUCTS = [
   {
     "id": 178,
     "name": "Libre Yves Saint Laurent",
-    "image": "images/products/178_Libre Yves Saint Laurent.png",
-    "section": "men",
+    "image": "images/products/178_Libre Yves Saint Laurent.jpeg",
+    "section": "women",
     "bestseller": true,
     "vip": false,
     "home": false,
