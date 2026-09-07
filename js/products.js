@@ -795,7 +795,7 @@ const PRODUCTS = [
   {
     "id": 73,
     "name": "Emblem Montblanc",
-    "image": "images/products/075_Emblem Montblanc.png",
+    "image": "images/products/075_Emblem Montblanc.jpeg",
     "section": "men",
     "bestseller": false,
     "vip": false,
@@ -1620,7 +1620,7 @@ const PRODUCTS = [
   {
     "id": 148,
     "name": "Individual Montblanc",
-    "image": "images/products/148_Individual Montblanc.png",
+    "image": "images/products/148_Individual Montblanc.jpeg",
     "section": "men",
     "bestseller": false,
     "vip": false,
@@ -2357,7 +2357,7 @@ const PRODUCTS = [
   {
     "id": 215,
     "name": "Gucci Guilty Gucci",
-    "image": "images/products/201_Gucci Guilty Gucci.png",
+    "image": "images/products/201_Gucci Guilty Gucci.jpeg",
     "section": "women",
     "bestseller": false,
     "vip": false,
@@ -2500,7 +2500,7 @@ const PRODUCTS = [
   {
     "id": 228,
     "name": "Miss Dior Cherie Eau de Parfum Dior",
-    "image": "images/products/214_Miss Dior Cherie Eau de Parfum Dior.png",
+    "image": "images/products/214_Miss Dior Cherie Eau de Parfum Dior.jpeg",
     "section": "women",
     "bestseller": false,
     "vip": false,
@@ -3028,7 +3028,7 @@ const PRODUCTS = [
   {
     "id": 276,
     "name": "Crystal Noir Versace",
-    "image": "images/products/265_Crystal Noir Versace.png",
+    "image": "images/products/265_Crystal Noir Versace.jpeg",
     "section": "women",
     "bestseller": false,
     "vip": false,
@@ -3182,7 +3182,7 @@ const PRODUCTS = [
   {
     "id": 290,
     "name": "Chance Eau Tendre Eau de Parfum Chanel",
-    "image": "images/products/279_Chance Eau Tendre Eau de Parfum Chanel.png",
+    "image": "images/products/279_Chance Eau Tendre Eau de Parfum Chanel.jpeg",
     "section": "women",
     "bestseller": false,
     "vip": false,
@@ -3193,7 +3193,7 @@ const PRODUCTS = [
   {
     "id": 291,
     "name": "VIP Rose Carolina Herrera 212",
-    "image": "images/products/280_VIP Rose Carolina Herrera 212.png",
+    "image": "images/products/280_VIP Rose Carolina Herrera 212.jpeg",
     "section": "women",
     "bestseller": false,
     "vip": false,
@@ -3248,7 +3248,7 @@ const PRODUCTS = [
   {
     "id": 296,
     "name": "Sexy Carolina Herrera 212",
-    "image": "images/products/285_Sexy Carolina Herrera 212.png",
+    "image": "images/products/285_Sexy Carolina Herrera 212.jpeg",
     "section": "women",
     "bestseller": false,
     "vip": false,
@@ -3303,7 +3303,7 @@ const PRODUCTS = [
   {
     "id": 301,
     "name": "VIP Carolina Herrera 212",
-    "image": "images/products/290_VIP Carolina Herrera 212.png",
+    "image": "images/products/290_VIP Carolina Herrera 212.jpeg",
     "section": "women",
     "bestseller": false,
     "vip": false,
@@ -3633,7 +3633,7 @@ const PRODUCTS = [
   {
     "id": 331,
     "name": "La Vie est Belle L Eclat Lancome",
-    "image": "images/products/320_La Vie est Belle L_Eclat Lancome.png",
+    "image": "images/products/320_La Vie est Belle L_Eclat Lancome.jpeg",
     "section": "women",
     "bestseller": false,
     "vip": false,
