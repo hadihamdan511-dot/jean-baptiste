@@ -621,6 +621,78 @@ img { max-width: 100%; display: block; }
   color: var(--text-muted);
 }
 
+/* ===== PAGINATION ===== */
+.pagination {
+  display: none;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  padding: 30px 15px;
+  flex-wrap: wrap;
+}
+
+.page-btn {
+  padding: 8px 16px;
+  background: var(--card);
+  border: 1px solid var(--border);
+  color: var(--text-muted);
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.3s;
+  font-size: 13px;
+  font-family: var(--font-body);
+}
+
+.page-btn:hover:not(:disabled) {
+  border-color: var(--gold);
+  color: var(--gold);
+}
+
+.page-btn:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+}
+
+.page-number {
+  padding: 6px 12px;
+  background: var(--card);
+  border: 1px solid var(--border);
+  color: var(--text-muted);
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.3s;
+  font-size: 13px;
+  min-width: 35px;
+  text-align: center;
+  font-family: var(--font-body);
+}
+
+.page-number:hover {
+  border-color: var(--gold);
+  color: var(--gold);
+}
+
+.page-number.active {
+  border-color: var(--gold);
+  color: var(--gold);
+  background: rgba(193, 154, 75, 0.1);
+}
+
+@media (max-width: 600px) {
+  .pagination {
+    gap: 6px;
+  }
+  .page-btn {
+    padding: 6px 12px;
+    font-size: 11px;
+  }
+  .page-number {
+    padding: 4px 8px;
+    font-size: 11px;
+    min-width: 28px;
+  }
+}
+
 /* ===== FOOTER ===== */
 .site-footer {
   background: var(--bg-alt);
@@ -998,6 +1070,13 @@ img { max-width: 100%; display: block; }
   <div class="empty-state" id="emptyState" style="display:none;">No products found in this collection yet.</div>
 </section>
 
+<!-- ===== PAGINATION ===== -->
+<div class="pagination" id="pagination">
+  <button class="page-btn" id="prevPage" disabled>← Previous</button>
+  <div id="pageNumbers"></div>
+  <button class="page-btn" id="nextPage">Next →</button>
+</div>
+
 <!-- ===== FOOTER ===== -->
 <footer class="site-footer">
   <div class="footer-grid">
@@ -1226,7 +1305,7 @@ function runSearch(query) {
   const resultsEl = document.getElementById('searchResults');
   if (!query.trim()) { resultsEl.innerHTML = ''; return; }
   const scored = PRODUCTS
-    .filter(p => p.section !== 'home') // HIDE HOME COLLECTION FROM SEARCH
+    .filter(p => p.section !== 'home')
     .map(p => ({ p, s: scoreMatch(query, p.name) }))
     .filter(x => x.s > 0)
     .sort((a, b) => b.s - a.s)
@@ -1242,7 +1321,12 @@ function runSearch(query) {
   `).join('');
 }
 
-// ===== COLLECTION RENDER =====
+// ===== PAGINATION VARIABLES =====
+let currentPage = 1;
+const productsPerPage = 24;
+let allFilteredProducts = [];
+
+// ===== COLLECTION RENDER WITH PAGINATION =====
 function getSectionFromURL() {
   const params = new URLSearchParams(window.location.search);
   return params.get('section') || 'all';
@@ -1277,15 +1361,88 @@ function renderCollection() {
     items = PRODUCTS.filter(p => p.section === section);
   }
 
+  allFilteredProducts = items;
+  currentPage = 1;
+  renderPage(currentPage);
+}
+
+function renderPage(page) {
   const grid = document.getElementById('collectionGrid');
   const empty = document.getElementById('emptyState');
-  if (items.length === 0) {
+  const pagination = document.getElementById('pagination');
+  
+  if (allFilteredProducts.length === 0) {
     grid.innerHTML = '';
     empty.style.display = 'block';
-  } else {
-    empty.style.display = 'none';
-    grid.innerHTML = items.map(productCard).join('');
+    pagination.style.display = 'none';
+    return;
   }
+  
+  empty.style.display = 'none';
+  
+  const startIndex = (page - 1) * productsPerPage;
+  const endIndex = Math.min(startIndex + productsPerPage, allFilteredProducts.length);
+  const pageItems = allFilteredProducts.slice(startIndex, endIndex);
+  
+  grid.innerHTML = pageItems.map(productCard).join('');
+  
+  updatePaginationControls();
+  
+  // Scroll to grid
+  grid.scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
+function updatePaginationControls() {
+  const totalPages = Math.ceil(allFilteredProducts.length / productsPerPage);
+  const prevBtn = document.getElementById('prevPage');
+  const nextBtn = document.getElementById('nextPage');
+  const pageNumbers = document.getElementById('pageNumbers');
+  const pagination = document.getElementById('pagination');
+  
+  if (totalPages <= 1) {
+    pagination.style.display = 'none';
+    return;
+  }
+  
+  pagination.style.display = 'flex';
+  prevBtn.disabled = currentPage <= 1;
+  nextBtn.disabled = currentPage >= totalPages;
+  
+  let html = '';
+  const maxVisiblePages = 5;
+  let startPage = Math.max(1, currentPage - Math.floor(maxVisiblePages / 2));
+  let endPage = Math.min(totalPages, startPage + maxVisiblePages - 1);
+  
+  if (endPage - startPage < maxVisiblePages - 1) {
+    startPage = Math.max(1, endPage - maxVisiblePages + 1);
+  }
+  
+  if (startPage > 1) {
+    html += `<span class="page-number" onclick="goToPage(1)">1</span>`;
+    if (startPage > 2) {
+      html += `<span class="page-number" style="border:none;cursor:default;">…</span>`;
+    }
+  }
+  
+  for (let i = startPage; i <= endPage; i++) {
+    html += `<span class="page-number ${i === currentPage ? 'active' : ''}" onclick="goToPage(${i})">${i}</span>`;
+  }
+  
+  if (endPage < totalPages) {
+    if (endPage < totalPages - 1) {
+      html += `<span class="page-number" style="border:none;cursor:default;">…</span>`;
+    }
+    html += `<span class="page-number" onclick="goToPage(${totalPages})">${totalPages}</span>`;
+  }
+  
+  pageNumbers.innerHTML = html;
+}
+
+function goToPage(page) {
+  const totalPages = Math.ceil(allFilteredProducts.length / productsPerPage);
+  if (page < 1 || page > totalPages) return;
+  currentPage = page;
+  renderPage(page);
 }
 
 // ===== HIGHLIGHT PRODUCT FROM SEARCH =====
@@ -1355,6 +1512,16 @@ document.getElementById('cartClose').addEventListener('click', closeCart);
 document.getElementById('cartOverlay').addEventListener('click', closeCart);
 
 document.getElementById('deliveryCheckbox').addEventListener('change', renderCart);
+
+// Prev/Next page buttons
+document.getElementById('prevPage').addEventListener('click', function() {
+  if (currentPage > 1) goToPage(currentPage - 1);
+});
+
+document.getElementById('nextPage').addEventListener('click', function() {
+  const totalPages = Math.ceil(allFilteredProducts.length / productsPerPage);
+  if (currentPage < totalPages) goToPage(currentPage + 1);
+});
 
 // Size button toggle
 document.addEventListener('click', function(e) {
