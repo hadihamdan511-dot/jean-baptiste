@@ -113,7 +113,7 @@ const PRODUCTS = [
   {
     "id": 11,
     "name": "Legend Eau de Parfum Montblanc",
-    "image": "images/products/010_Legend Eau de Parfum Montblanc.png",
+    "image": "images/products/010_Legend Eau de Parfum Montblanc.jpeg",
     "section": "men",
     "bestseller": false,
     "vip": false,
