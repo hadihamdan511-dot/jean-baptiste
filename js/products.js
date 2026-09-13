@@ -2312,8 +2312,8 @@ const PRODUCTS = [
   },
   {
     "id": 211,
-    "name": "Magnolia Elizabeth W",
-    "image": "images/products/198_Magnolia Elizabeth W.png",
+    "name": "Magnolia Yves Rocher",
+    "image": "images/products/198_Magnolia Elizabeth W.jpeg",
     "section": "women",
     "bestseller": false,
     "vip": false,
