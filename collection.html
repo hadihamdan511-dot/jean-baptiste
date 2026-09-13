@@ -1366,7 +1366,7 @@ function renderCollection() {
   renderPage(currentPage);
 }
 
-function renderPage(page) {
+function renderPage(page, skipScroll = false) {
   const grid = document.getElementById('collectionGrid');
   const empty = document.getElementById('emptyState');
   const pagination = document.getElementById('pagination');
@@ -1388,8 +1388,9 @@ function renderPage(page) {
   
   updatePaginationControls();
   
-  // Scroll to grid
-  grid.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  if (!skipScroll) {
+    grid.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
 }
 
 function updatePaginationControls() {
@@ -1445,28 +1446,43 @@ function goToPage(page) {
   renderPage(page);
 }
 
-// ===== HIGHLIGHT PRODUCT FROM SEARCH =====
+// ===== HIGHLIGHT PRODUCT FROM SEARCH (WITH PAGINATION) =====
 function highlightProduct() {
   const params = new URLSearchParams(window.location.search);
   const highlightId = params.get('highlight');
   
   if (highlightId) {
-    setTimeout(() => {
-      const cards = document.querySelectorAll('.product-card');
-      for (const card of cards) {
-        const cardId = card.getAttribute('data-product-id');
-        if (cardId === highlightId) {
-          card.scrollIntoView({ behavior: 'smooth', block: 'center' });
-          card.style.borderColor = 'var(--gold)';
-          card.style.boxShadow = '0 0 40px rgba(193, 154, 75, 0.6)';
-          card.style.transition = 'all 0.3s';
-          setTimeout(() => {
-            card.style.boxShadow = '';
-          }, 3000);
-          break;
-        }
+    // Find the product in the full filtered list
+    const productIndex = allFilteredProducts.findIndex(p => p.id == highlightId);
+    
+    if (productIndex !== -1) {
+      // Calculate which page the product is on
+      const targetPage = Math.ceil((productIndex + 1) / productsPerPage);
+      
+      // If it's not on the current page, navigate to that page first
+      if (targetPage !== currentPage) {
+        currentPage = targetPage;
+        renderPage(currentPage, true); // skipScroll = true
       }
-    }, 600);
+      
+      // Wait for the DOM to render, then scroll to and highlight the product
+      setTimeout(() => {
+        const cards = document.querySelectorAll('.product-card');
+        for (const card of cards) {
+          const cardId = card.getAttribute('data-product-id');
+          if (cardId == highlightId) {
+            card.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            card.style.borderColor = 'var(--gold)';
+            card.style.boxShadow = '0 0 40px rgba(193, 154, 75, 0.6)';
+            card.style.transition = 'all 0.3s';
+            setTimeout(() => {
+              card.style.boxShadow = '';
+            }, 3000);
+            break;
+          }
+        }
+      }, 600);
+    }
   }
 }
 
