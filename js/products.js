@@ -113,7 +113,7 @@ const PRODUCTS = [
   {
     "id": 11,
     "name": "Legend Montblanc",
-    "image": "images/products/1.jpeg",
+    "image": "images/products/010_Legend Montblanc.jpeg",
     "section": "men",
     "bestseller": false,
     "vip": false,
