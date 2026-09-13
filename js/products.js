@@ -3907,12 +3907,12 @@ const PRODUCTS = [
   },
   {
     "id": 356,
-    "name": "White Oud ALREHAB PERFUMES",
-    "image": "images/products/343_White Oud ALREHAB PERFUMES.png",
+    "name": "Whiye Oud",
+    "image": "images/home/whiye.jpeg",
     "section": "unisex",
     "bestseller": false,
     "vip": false,
-    "home": false,
+    "home": true,
     "price75": 10,
     "price100": 15
   },
