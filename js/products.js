@@ -278,7 +278,7 @@ const PRODUCTS = [
   {
     "id": 26,
     "name": "Lanvin for Men Lanvin",
-    "image": "images/products/026_Lanvin for Men Lanvin.png",
+    "image": "images/products/026_Lanvin for Men Lanvin.jpeg",
     "section": "men",
     "bestseller": false,
     "vip": false,
@@ -454,7 +454,7 @@ const PRODUCTS = [
   {
     "id": 42,
     "name": "212 Men Carolina Herrera",
-    "image": "images/products/044_212 Men Carolina Herrera.png",
+    "image": "images/products/044_212 Men Carolina Herrera.jpeg",
     "section": "men",
     "bestseller": true,
     "vip": false,
@@ -784,7 +784,7 @@ const PRODUCTS = [
   {
     "id": 72,
     "name": "Noir Tom Ford",
-    "image": "images/products/074_Noir Tom Ford.png",
+    "image": "images/products/074_Noir Tom Ford.jpeg",
     "section": "men",
     "bestseller": false,
     "vip": false,
@@ -839,7 +839,7 @@ const PRODUCTS = [
   {
     "id": 77,
     "name": "Dolce Gabbana Pour Homme Intenso",
-    "image": "images/products/079_Dolce_Gabbana Pour Homme Intenso.png",
+    "image": "images/products/079_Dolce_Gabbana Pour Homme Intenso.jpeg",
     "section": "men",
     "bestseller": false,
     "vip": false,
@@ -982,7 +982,7 @@ const PRODUCTS = [
   {
     "id": 90,
     "name": "Invictus Rabanne",
-    "image": "images/products/092_Invictus Rabanne.png",
+    "image": "images/products/092_Invictus Rabanne.jpeg",
     "section": "men",
     "bestseller": false,
     "vip": false,
@@ -2291,7 +2291,7 @@ const PRODUCTS = [
   {
     "id": 209,
     "name": "Poeme Lancome",
-    "image": "images/products/196_Poeme Lancome.png",
+    "image": "images/products/196_Poeme Lancome.jpeg",
     "section": "women",
     "bestseller": false,
     "vip": false,
@@ -2643,7 +2643,7 @@ const PRODUCTS = [
   {
     "id": 241,
     "name": "Valentino Donna Valentino",
-    "image": "images/products/227_Valentino Donna Valentino.png",
+    "image": "images/products/227_Valentino Donna Valentino.jpeg",
     "section": "women",
     "bestseller": false,
     "vip": false,
@@ -2687,7 +2687,7 @@ const PRODUCTS = [
   {
     "id": 245,
     "name": "Narciso Poudree Narciso Rodriguez",
-    "image": "images/products/232_Narciso Poudree Narciso Rodriguez.png",
+    "image": "images/products/232_Narciso Poudree Narciso Rodriguez.jpeg",
     "section": "women",
     "bestseller": false,
     "vip": false,
@@ -4194,7 +4194,7 @@ const PRODUCTS = [
   {
     "id": 382,
     "name": "Grand Soir Maison Francis Kurkdjian",
-    "image": "images/products/358_Grand Soir Maison Francis Kurkdjian.png",
+    "image": "images/products/358_Grand Soir Maison Francis Kurkdjian.jpeg",
     "section": "unisex",
     "bestseller": false,
     "vip": true,
